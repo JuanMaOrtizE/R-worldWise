@@ -4,7 +4,9 @@ import Product from "./pages/Product.jsx";
 import Pricing from "./pages/Pricing.jsx";
 import AppLayout from "./pages/AppLayout.jsx";
 import Login from "./pages/Login.jsx";
+import CityList from "./components/CityList.jsx";
 import PageNotFound from "./pages/PageNotFound.jsx";
+import CountryList from "./components/CountryList.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <Homepage /> },
@@ -15,9 +17,9 @@ const router = createBrowserRouter([
     path: "/app",
     element: <AppLayout />,
     children: [
-      { index: true, element: <p>List of Cities</p> },
-      { path: "cities", element: <p>List of Cities</p> },
-      { path: "countries", element: <p>List of Countries</p> },
+      { index: true, element: <CityList /> },
+      { path: "cities", element: <CityList /> },
+      { path: "countries", element: <CountryList /> },
       { path: "form", element: <p>Form</p> },
     ],
   },
