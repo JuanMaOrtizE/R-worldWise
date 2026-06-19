@@ -13,6 +13,7 @@ import PageNotFound from "./pages/PageNotFound.jsx";
 import CountryList from "./components/CountryList.jsx";
 import City from "./components/City.jsx";
 import Form from "./components/Form.jsx";
+import { CitiesProvider } from "./contexts/CitiesContexts.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <Homepage /> },
@@ -35,7 +36,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <CitiesProvider>
+      <RouterProvider router={router} />
+    </CitiesProvider>
+  );
 }
 
 export default App;

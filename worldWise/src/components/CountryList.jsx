@@ -1,36 +1,13 @@
-// import styles from "./CityList.module.css";
-import { useState } from "react";
-import { useEffect } from "react";
 import styles from "./CountryList.module.css";
 import Spinner from "./Spinner.jsx";
 import Countryitem from "./Countryitem.jsx";
+import { useCities } from "../contexts/CitiesContexts.jsx";
 
 function CountryList() {
-  const [countries, setCountries] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    async function fetchCountries() {
-      try {
-        setIsLoading(true);
-
-        const res = await fetch("http://localhost:9000/cities");
-        const data = await res.json();
-
-        setCountries(data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchCountries();
-  }, []);
-
+  const { cities, isLoading } = useCities();
   if (isLoading) return <Spinner />;
 
-  const uniqueCountries = countries.reduce((acc, city) => {
+  const uniqueCountries = cities.reduce((acc, city) => {
     if (!acc.map((c) => c.country).includes(city.country))
       return [
         ...acc,
