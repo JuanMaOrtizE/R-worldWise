@@ -5,6 +5,7 @@ import { useCities } from "../contexts/CitiesContexts.jsx";
 
 function CityList() {
   const { cities, isLoading } = useCities();
+
   if (isLoading) return <Spinner />;
 
   return (
