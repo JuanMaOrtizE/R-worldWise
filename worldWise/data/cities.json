@@ -1,18 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
-      },
-      "id": 73930385
-    },
-    {
       "cityName": "Madrid",
       "country": "Spain",
       "emoji": "🇪🇸",
@@ -22,31 +10,44 @@
         "lat": 40.46635901755316,
         "lng": -3.7133789062500004
       },
-      "id": 17806751
+      "id": "17806751"
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "cityName": "London",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2026-06-22T21:14:25.780Z",
+      "notes": "ju",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
+        "lat": "51.49632075702144",
+        "lng": "-0.10199067443966482"
       },
-      "id": 98443197
+      "id": "TcbMvclKqSs"
     },
     {
-      "cityName": "Medellín",
-      "country": "Colombia",
-      "emoji": "Co",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "cityName": "London",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2026-06-22T21:22:41.539Z",
+      "notes": "gfh",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
+        "lat": "51.50808183547665",
+        "lng": "-0.10662148730107736"
       },
-      "id": 1234
+      "id": "XTTXuzQit6g"
+    },
+    {
+      "cityName": "London",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2026-06-22T21:23:14.807Z",
+      "notes": "jhk",
+      "position": {
+        "lat": "51.519089922962145",
+        "lng": "-0.12687438420216915"
+      },
+      "id": "xHwJZYhAneI"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
