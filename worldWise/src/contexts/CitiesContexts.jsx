@@ -2,28 +2,74 @@ import { createContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
+import { useReducer } from "react";
 
 const URL = "http://localhost:9000";
 const CitiesContext = createContext();
 
+const initialState = {
+  cities: [],
+  isLoading: false,
+  currentCity: {},
+  error: "",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "SET_LOADING":
+      return { ...state, isLoading: true, error: "" };
+
+    case "SET_CITIES":
+      return {
+        ...state,
+        isLoading: false,
+        cities: action.payload,
+      };
+
+    case "CREATE_CITY":
+      return {
+        ...state,
+        isLoading: false,
+        cities: [...state.cities, action.payload],
+        currentCity: action.payload,
+      };
+
+    case "SET_CURRENT_CITY":
+      return { ...state, isLoading: false, currentCity: action.payload };
+
+    case "DELETE_CITY":
+      return {
+        ...state,
+        isLoading: false,
+        cities: state.cities.filter((city) => city.id !== action.payload),
+        currentCity:
+          state.currentCity.id === action.payload ? {} : state.currentCity,
+      };
+
+    case "SET_ERROR":
+      return { ...state, isLoading: false, error: action.payload };
+
+    default:
+      throw new Error(`Unknown action type: ${action.type}`);
+  }
+}
+
 function CitiesProvider({ children }) {
-  const [cities, setCities] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentCity, setCurrentCity] = useState({});
+  const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
+    reducer,
+    initialState,
+  );
 
   useEffect(() => {
     async function fetchCities() {
+      dispatch({ type: "SET_LOADING" });
       try {
-        setIsLoading(true);
-
         const res = await fetch(`${URL}/cities`);
         const data = await res.json();
 
-        setCities(data);
+        dispatch({ type: "SET_CITIES", payload: data });
       } catch (err) {
-        console.error(err);
-      } finally {
-        setIsLoading(false);
+        dispatch({ type: "SET_ERROR", payload: "Failed to fetch cities" });
       }
     }
 
@@ -31,24 +77,25 @@ function CitiesProvider({ children }) {
   }, []);
 
   async function getCity(id) {
-    try {
-      setIsLoading(true);
+    if (id === currentCity.id) return;
+    console.log("Fetching city with id:", id);
 
+    dispatch({ type: "SET_LOADING" });
+
+    try {
       const res = await fetch(`${URL}/cities/${id}`);
       const data = await res.json();
 
-      setCurrentCity(data);
+      dispatch({ type: "SET_CURRENT_CITY", payload: data });
     } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: "SET_ERROR", payload: "Failed to fetch city" });
     }
   }
 
   async function createCity(newCity) {
-    try {
-      setIsLoading(true);
+    dispatch({ type: "SET_LOADING" });
 
+    try {
       const res = await fetch(`${URL}/cities`, {
         method: "POST",
         headers: {
@@ -57,26 +104,26 @@ function CitiesProvider({ children }) {
         body: JSON.stringify(newCity),
       });
       const data = await res.json();
-      console.log("Cities:", cities);
-      setCities((cities) => [...cities, data]);
+
+      dispatch({ type: "CREATE_CITY", payload: data });
     } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: "SET_ERROR", payload: "Failed to create city" });
     }
   }
 
   async function deleteCity(id) {
+    dispatch({ type: "SET_LOADING" });
+
     try {
-      setIsLoading(true);
       await fetch(`${URL}/cities/${id}`, {
         method: "DELETE",
       });
-      setCities((cities) => cities.filter((city) => city.id !== id));
+      dispatch({
+        type: "DELETE_CITY",
+        payload: id,
+      });
     } catch (err) {
-      console.error(err);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: "SET_ERROR", payload: "Failed to delete city" });
     }
   }
 
@@ -86,6 +133,7 @@ function CitiesProvider({ children }) {
         cities,
         isLoading,
         currentCity,
+        error,
         getCity,
         createCity,
         deleteCity,

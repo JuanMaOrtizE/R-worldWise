@@ -6,7 +6,7 @@ import Spinner from "./Spinner.jsx";
 import BackButton from "./BackButton.jsx";
 
 function City() {
-  const { id } = useParams();
+  const { id } = useParams(); //captura el id de la ciudad desde la URL :id
   const { getCity, currentCity, isLoading } = useCities();
 
   const formatDate = (date) =>

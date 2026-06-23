@@ -1,30 +1,6 @@
 {
   "cities": [
     {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
-      "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
-      },
-      "id": "17806751"
-    },
-    {
-      "cityName": "London",
-      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
-      "emoji": "🇬🇧",
-      "date": "2026-06-22T21:14:25.780Z",
-      "notes": "ju",
-      "position": {
-        "lat": "51.49632075702144",
-        "lng": "-0.10199067443966482"
-      },
-      "id": "TcbMvclKqSs"
-    },
-    {
       "cityName": "London",
       "country": "United Kingdom of Great Britain and Northern Ireland (the)",
       "emoji": "🇬🇧",
@@ -47,6 +23,30 @@
         "lng": "-0.12687438420216915"
       },
       "id": "xHwJZYhAneI"
+    },
+    {
+      "cityName": "London",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2026-06-23T00:15:40.664Z",
+      "notes": "fdgdf",
+      "position": {
+        "lat": "51.49589302424631",
+        "lng": "-0.09804590792810154"
+      },
+      "id": "Vc7HwDeNgfI"
+    },
+    {
+      "cityName": "London",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "emoji": "🇬🇧",
+      "date": "2026-06-23T00:22:43.459Z",
+      "notes": "",
+      "position": {
+        "lat": "51.516695919261686",
+        "lng": "-0.11725273419689765"
+      },
+      "id": "A3xzG-L8ZEI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
